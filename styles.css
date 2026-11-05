@@ -1,0 +1,387 @@
+
+:root {
+    --bg: #fafaf9;
+    --surface: #ffffff;
+    --text: #131110;
+    --muted: #3f3d3b;
+    --border: #df642700; /*podria eliminarlo*/
+    --accent-tec-usadas-letras: #2563eb;
+    --accent-tec-usadas: #dbeafe;
+    --accent-tec-dispo:  rgb(6, 180, 6);
+    --accent-tec-dispo-letras: white;
+
+    --nav: rgb(85, 85, 85);
+    --lineas-fond0:  #e2e8f0;
+    --surface-conoci: #e0e0e0;
+}
+
+
+
+@media (prefers-color-scheme: dark) {
+:root {
+    --bg: #0c0a09;
+    --surface: #1c1917;
+    --text: #d8d8d6;
+    --muted: #b8b4b1;
+    --border: #292524;
+    --accent-tec-usadas-letras: #60a5fa;
+    --accent-tec-usadas: #1e3a5f;
+    --accent-tec-dispo:  green;
+    --accent-tec-dispo-letras: white;
+
+    --nav: rgb(85, 85, 85);
+    --lineas-fond0:  #535353;
+    --surface-conoci: #474747;
+
+    }
+}
+
+
+* { 
+    box-sizing: border-box; 
+    margin: 0; 
+    padding: 0; 
+}
+
+
+html { 
+    scroll-behavior: smooth; 
+}
+
+
+body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+    color: var(--text);
+    
+    /* Color de fondo principal */
+    background: var(--bg);
+  
+    /* Dibujamos las líneas horizontales y verticales */
+    background-image: 
+        linear-gradient(to right, var(--lineas-fond0) 1px, transparent 1px),/*verticales*/
+        linear-gradient(to bottom, var(--lineas-fond0) 1px, transparent 1px);/*horizontales*/
+  
+    /* Define el tamaño de los cuadrados de la cuadrícula (ancho x alto) */
+    background-size: 30px 30px;
+    line-height: 1.5;
+}
+
+
+a { 
+    color: var(--accent-tec-usadas-letras); 
+    text-decoration: none; 
+}
+
+
+a:hover { 
+    text-decoration: underline; 
+}
+
+
+.wrap { 
+    max-width: 880px; 
+    margin: 0 auto; 
+    padding: 0 20px; 
+}
+
+
+header.nav {
+    border-radius: 30px;
+    position: sticky; top: 0; z-index: 10;
+    background: color-mix(in srgb, var(--nav) 10%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+}
+
+
+.nav .wrap { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    height: 56px; 
+}
+
+
+.nav strong { 
+    font-size: 1rem; 
+}
+
+
+.nav nav { 
+    display: flex; 
+    gap: 18px; 
+    font-size: .92rem; 
+}
+
+
+.nav nav a { 
+    color: var(--muted); 
+}
+
+
+.nav nav a:hover { 
+    color: var(--text); 
+    text-decoration: none; 
+}
+
+
+.hero { 
+    padding: 80px 0 50px; 
+}
+
+
+.hero .disponibilidad {
+    display: inline-block;
+    font-size: .85rem; 
+    font-weight: 600;
+    color: var(--accent-tec-dispo-letras); 
+    background: var(--accent-tec-dispo);
+    padding: 4px 12px; 
+    border-radius: 999px; 
+    margin-bottom: 18px;
+}
+
+
+.hero h1 { 
+    font-size: clamp(2rem, 6vw, 3.2rem); 
+    line-height: 1.15; 
+    margin-bottom: 14px; 
+}
+
+
+.hero p { 
+    font-size: 1.1rem; 
+    color: var(--muted); 
+    max-width: 580px; 
+}
+
+
+.actions { 
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 12px; 
+    margin-top: 28px; 
+}
+
+
+.btn {
+    display: inline-block; 
+    padding: 10px 20px; 
+    border-radius: 8px;
+    font-weight: 600; 
+    font-size: .95rem; 
+    border: 1px solid var(--border);
+    color: var(--text); 
+    background: var(--surface);
+}
+
+
+.btn:hover { 
+    text-decoration: none; 
+    border-color: var(--accent-tec-usadas-letras); 
+}
+
+
+.btn.primary { 
+    background: var(--accent-tec-usadas-letras); 
+    border-color: var(--accent-tec-usadas-letras); 
+    color: #fff; 
+}
+
+
+@media (prefers-color-scheme: dark) { .btn.primary {
+                                             color: #0c0a09; 
+                                            } 
+}
+
+section { 
+    padding: 48px 0; 
+    border-top: 1px solid var(--border); 
+}
+
+
+section h2 { 
+    font-size: 1.5rem; 
+    margin-bottom: 22px; 
+}
+
+
+.about p { 
+    color: var(--muted); 
+    max-width: 640px; 
+    margin-bottom: 14px; 
+}
+
+
+.facts { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
+    gap: 14px; 
+    margin-top: 22px; 
+}
+
+
+.fact { 
+    background: var(--surface); 
+    border: 1px solid var(--border); 
+    border-radius: 10px; 
+    padding: 14px 16px; 
+}
+
+
+.fact small { 
+    display: block; 
+    color: var(--muted); 
+    font-size: .8rem; 
+    margin-bottom: 2px; 
+}
+
+
+.chips { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(120px, 100px));
+    /*flex-wrap: wrap; /*para que se alineen segun el espacio*/
+    gap: 12px; 
+}
+
+
+.chip {
+    background: var(--surface-conoci); 
+    border: 1px solid var(--border);
+    padding: 15px 20px; 
+    border-radius: 8px; 
+    font-size: .92rem; 
+    font-weight: 500;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 120px;
+    height: 140px;
+    padding: 12px;
+    border-radius: 10px;
+}
+
+
+.chip .conc{
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.chip span{
+    font-weight: 600;
+    text-align: center;
+    line-height: 1.5;
+}
+
+
+.projects { 
+    display: grid; 
+    gap: 18px; 
+}
+
+
+.card { 
+    background: var(--surface); 
+    border: 1px solid var(--border); 
+    border-radius: 12px; 
+    padding: 22px; 
+}
+
+
+.card h3 { 
+    font-size: 1.15rem; 
+    margin-bottom: 6px; 
+}
+
+.card p { 
+    color: var(--muted); 
+    margin-bottom: 12px; 
+}
+
+
+.card .stack { 
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 8px; 
+    margin-bottom: 14px; 
+}
+
+
+.card .stack span { 
+    font-size: .78rem; 
+    background: var(--accent-tec-usadas); 
+    color: var(--accent-tec-usadas-letras); 
+    padding: 3px 10px; 
+    border-radius: 999px; 
+    font-weight: 600; 
+}
+
+
+.card .links { 
+    display: flex; 
+    gap: 16px; 
+    font-size: .92rem; 
+    font-weight: 600; 
+}
+
+
+.status { 
+    font-size: .8rem; 
+    color: var(--muted); 
+    margin-bottom: 8px; 
+}
+
+
+.contact p { 
+    color: var(--muted); 
+    margin-bottom: 16px; 
+}
+
+
+.contact ul { 
+    list-style: none; 
+    display: grid; 
+    gap: 10px; 
+}
+
+
+footer { 
+    padding: 28px 0; 
+    border-top: 1px solid var(--border); 
+    color: var(--muted); 
+    font-size: .85rem; 
+    text-align: center;
+    
+    background: color-mix(in srgb, var(--nav) 90%,transparent);
+    
+}
+
+
+@media (max-width: 560px) {
+    .nav nav { 
+        gap: 12px; 
+        font-size: .85rem; 
+    }
+
+    .hero { 
+        padding: 56px 0 40px; 
+    }
+}
+
+
+/*falta 
+
+que en proyectos se vean como targetas (maximo 3 por fila) 
+que los conosimientos se vean como targetas con fotos (5 por fila max)
+a futuro hacer algo de certificaciones (listado y luego el certificado?)
+
+(que esas tengan un var arriba y que se muestre 1 de las opciones por vez, haciendo que el DOM cambie solo en esa parte)
+
+ 
+*/
