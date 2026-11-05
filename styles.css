@@ -36,6 +36,47 @@
     }
 }
 
+.aviso-obra {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  margin: 16px 0;
+  border-radius: 10px;
+  border: 1px solid #f5c542;
+  border-left: 8px solid #f5c542;
+  background: repeating-linear-gradient(
+    -45deg,
+    #fffbea,
+    #fffbea 12px,
+    #fff4c7 12px,
+    #fff4c7 24px
+  );
+  color: #3b3200;
+  font-size: 0.95rem;
+}
+
+.aviso-obra p {
+  margin: 0;
+}
+
+.aviso-icono {
+  font-size: 1.4rem;
+}
+
+.aviso-icono {
+  display: inline-block;
+  animation: balanceo 2s ease-in-out infinite;
+}
+
+@keyframes balanceo {
+  0%, 100% { transform: rotate(-8deg); }
+  50% { transform: rotate(8deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aviso-icono { animation: none; }
+}
 
 * { 
     box-sizing: border-box; 
