@@ -128,6 +128,11 @@ header.nav {
 
 .hero { 
     padding: 80px 0 50px; 
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+
 }
 
 
@@ -154,6 +159,19 @@ header.nav {
     font-size: 1.1rem; 
     color: var(--muted); 
     max-width: 580px; 
+}
+
+
+.hero-contenido {
+  flex: 1;
+}
+
+.imagen-mia {
+  width: 280px;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 50%;     /* círculo; sacalo si la querés cuadrada */
+  flex-shrink: 0;
 }
 
 
@@ -369,8 +387,14 @@ footer {
         font-size: .85rem; 
     }
 
-    .hero { 
-        padding: 56px 0 40px; 
+    .hero {
+        flex-direction: column-reverse;  /* en celular la foto queda arriba */
+        text-align: center;
+    }
+
+    .imagen-mia {
+        width: 200px;
+        height: 200px;
     }
 }
 
