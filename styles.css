@@ -389,6 +389,15 @@ section h2 {
     font-weight: 600; 
 }
 
+.card ul {
+  padding-left: 24px;   /* para mover la lista a la derecha */
+  margin-bottom: 12px;
+}
+
+.card li {
+  margin-bottom: 1px;
+}
+
 
 .status { 
     font-size: .8rem; 

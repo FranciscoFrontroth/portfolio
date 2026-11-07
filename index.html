@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Francisco Frontroth | Desarrollador de Software Jr</title>
+    <title>Francisco Romero Frontroth </title>
     <meta name="description" content="Portfolio de Francisco Frontroth, desarrollador de software jr y estudiante de Ingeniería en Sistemas de Información en la UTN. Córdoba, Argentina.">
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -29,7 +29,6 @@
             <div class="hero-contenido">
                 <span class="disponibilidad">Disponible para oportunidades</span>
                 <h1>Francisco Romero Frontorth</h1>
-                <h2>Desarrollador jr.</h2>
                 <p>Estudiante de Ingeniería en Sistemas de Información en la UTN. 
                     tengo interes las bases de datos y el desarrollo de software, en servidores linux y ciberseguridad.</p>
                 
@@ -134,13 +133,21 @@
                 <img class="conoc" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg" />
                 <span class="card-conoc">GitHub</span>
             </div>
-
+            
         </div>
-        </section>
+    </section>
     
-        <section id="proyectos">
+    <section id="proyectos">
         <h2>Proyectos</h2>
         <div class="projects">
+            
+            
+            <article class="card">
+                <div class="status">Proyecto personal · En desarrollo</div>
+                    <h3>Servidor casero y laboratorio Linux</h3>
+                    <p>Servidor propio en Linux donde aprendo Docker y Kubernetes para alojar sitios web, practico con máquinas virtuales (sistemas operativos, ciberseguridad y hosting) y desarrollo un sistema casero de almacenamiento en la nube similar a Drive.</p>
+                <div class="stack"><span>Linux</span><span>Docker</span><span>Kubernetes</span><span>Máquinas virtuales</span></div>
+            </article>
     
             <article class="card">
             <div class="status">En desarrollo</div>
@@ -157,20 +164,25 @@
                 <a href="#" target="_blank" rel="noopener">Repositorio</a>
             </div>
             </article>
-    
-            <article class="card">
-            <div class="status">Trabajo universitario · UTN</div>
-            <h3>[Nombre del proyecto de DDS]</h3>
-            <p>Proyecto de la materia Desarrollo de Software, trabajado en equipo con GitHub. [Contá en una o dos frases qué problema resuelve y cuál fue tu parte.]</p>
-            <div class="stack">
-                <span>GitHub</span>
-                <span>[otras tecnologías]</span>
-            </div>
+        <article class="card">
+            <div class="status">Proyecto académico en equipo   ·   Desarrollo de software   · UTN FRC</div>
+                <h3>Sistema de Control de Solicitudes de Equipamiento</h3>
+                <p>Aplicación web para gestionar el préstamo de notebooks, proyectores y cámaras. Los usuarios piden equipos por fechas y los encargados aprueban, rechazan o registran la devolución, con reglas que evitan reservas superpuestas.</p>
+                <section class="lista card">
+                    <h4>Algunas de las funcionalidades del sistema son: </h4>
+                    <ul>
+                        <li>API REST en Node.js y Express con autenticación JWT </li>
+                        <li>Control de disponibilidad: detecta fechas superpuestas y cambia el estado de los equipos.</li>
+                        <li>Historial de cambios, filtros, paginación y pruebas automatizadas con Jest.</li>
+                    </ul>
+                </section>
+                <p><strong>Mi parte:</strong> organizacion y verifiaccion de tests y logica del negocio, integrar la verifiacion JWT con roles</p>
+            <div class="stack"><span>React</span><span>Vite</span><span>Node.js</span><span>Express</span><span>JWT</span><span>Jest</span></div>
             <div class="links">
                 <a href="#" target="_blank" rel="noopener">Repositorio</a>
             </div>
-            </article>
-    
+        </article>
+                
         </div>
         </section>
     
