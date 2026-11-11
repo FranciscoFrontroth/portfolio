@@ -6,6 +6,10 @@
     <title>Francisco Frontroth | Desarrollador de Software Jr</title>
     <meta name="description" content="Portfolio de Francisco Frontroth, desarrollador de software jr y estudiante de Ingeniería en Sistemas de Información en la UTN. Córdoba, Argentina.">
     <link rel="stylesheet" href="styles.css">
+    <script>
+        /* Aplica el tema guardado antes de pintar la página (evita el parpadeo). La lógica completa está en script.js */
+        try { var t = localStorage.getItem("tema"); if (t === "light" || t === "dark") document.documentElement.dataset.theme = t; } catch (e) {}
+    </script>
 </head>
 
 <body>
@@ -13,12 +17,20 @@
     <header class="nav">
         <div class="wrap">
             <strong>Francisco Frontroth</strong>
+            <div class="nav-derecha">
             <nav>
             <a href="#sobre-mi">Sobre mí</a>
             <a href="#conocimientos">conocimientos</a>
             <a href="#proyectos">Proyectos</a>
             <a href="#contacto">Contacto</a>
             </nav>
+
+            <button class="theme-toggle" id="theme-toggle" type="button" role="switch" aria-checked="false" aria-label="Modo oscuro">
+                <svg class="icono-sol" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+                <svg class="icono-luna" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                <span class="theme-knob" aria-hidden="true"></span>
+            </button>
+            </div>
         </div>
     </header>
     
@@ -72,12 +84,25 @@
         <div class="facts">
             <div class="fact"><small>Ubicación</small>Córdoba, Argentina</div>
             <div class="fact"><small>Formación</small>Ing. en Sistemas de Información, UTN</div>
-            <div class="fact"><small>Idiomas: </small>Español · Inglés: A2</div>
+            <div class="fact"><small>Idiomas: </small>Español · Inglés: B1</div>
         </div>
         </section>
     
-        <section id="conocimientos">
-        <h2>Conocimientos</h2>
+        <section id="trabajo">
+        <h2 class="sr-only">Proyectos y conocimientos</h2>
+
+        <div class="switch" role="tablist" aria-label="Elegir entre proyectos y conocimientos" data-active="proyectos">
+            <span class="switch-pill" aria-hidden="true"></span>
+            <button class="switch-op" type="button" role="tab" id="tab-proyectos" aria-controls="proyectos" aria-selected="true" data-tab="proyectos">Proyectos</button>
+            <button class="switch-op" type="button" role="tab" id="tab-conocimientos" aria-controls="conocimientos" aria-selected="false" tabindex="-1" data-tab="conocimientos">Conocimientos</button>
+        </div>
+
+        <div class="panel" id="proyectos" role="tabpanel" aria-labelledby="tab-proyectos">
+            <!-- Las tarjetas se generan desde script.js (arreglo PROYECTOS) -->
+            <div class="projects" id="lista-proyectos"></div>
+        </div>
+
+        <div class="panel" id="conocimientos" role="tabpanel" aria-labelledby="tab-conocimientos" hidden>
         <div class="chips">
            
             <div class="chip">
@@ -136,41 +161,6 @@
             </div>
 
         </div>
-        </section>
-    
-        <section id="proyectos">
-        <h2>Proyectos</h2>
-        <div class="projects">
-    
-            <article class="card">
-            <div class="status">En desarrollo</div>
-            <h3>Aplicación web de noticias</h3>
-            <p>Aplicación web para consultar noticias, con interfaz en React y un backend propio en Node.js y Express. [Sumá acá qué funcionalidades tiene: búsqueda, categorías, login, etc.]</p>
-            <div class="stack">
-                <span>React</span>
-                <span>Vite</span>
-                <span>Node.js</span>
-                <span>Express</span>
-            </div>
-            <div class="links">
-                <a href="#" target="_blank" rel="noopener">Ver demo</a>
-                <a href="#" target="_blank" rel="noopener">Repositorio</a>
-            </div>
-            </article>
-    
-            <article class="card">
-            <div class="status">Trabajo universitario · UTN</div>
-            <h3>[Nombre del proyecto de DDS]</h3>
-            <p>Proyecto de la materia Desarrollo de Software, trabajado en equipo con GitHub. [Contá en una o dos frases qué problema resuelve y cuál fue tu parte.]</p>
-            <div class="stack">
-                <span>GitHub</span>
-                <span>[otras tecnologías]</span>
-            </div>
-            <div class="links">
-                <a href="#" target="_blank" rel="noopener">Repositorio</a>
-            </div>
-            </article>
-    
         </div>
         </section>
     
@@ -190,7 +180,16 @@
     <footer>
     <div  class="wrap">© 2026 Francisco Frontroth</div>
     </footer>
- 
+
+    <!-- Vista en pantalla completa de un proyecto (se rellena desde script.js) -->
+    <dialog class="proyecto-modal" id="proyecto-modal" aria-labelledby="modal-titulo">
+        <button class="modal-cerrar" type="button" aria-label="Cerrar">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+        <div class="modal-cuerpo"></div>
+    </dialog>
+
+    <script src="script.js"></script>
 </body>
 </html>
 <!--

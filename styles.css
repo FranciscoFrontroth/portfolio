@@ -13,12 +13,13 @@
     --nav: rgb(85, 85, 85);
     --lineas-fond0:  #e2e8f0;
     --surface-conoci: #e0e0e0;
+    color-scheme: light;
 }
 
 
 
-@media (prefers-color-scheme: dark) {
-:root {
+:root[data-theme="dark"] {
+    color-scheme: dark;
     --bg: #0c0a09;
     --surface: #1c1917;
     --text: #d8d8d6;
@@ -32,7 +33,26 @@
     --nav: rgb(85, 85, 85);
     --lineas-fond0:  #535353;
     --surface-conoci: #474747;
+}
 
+/* Mientras no se haya elegido un tema (o si no corre el JS), se sigue el del sistema.
+   Estas variables son las mismas que las de arriba; si cambiás una, cambiala en los dos lugares. */
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme]) {
+        color-scheme: dark;
+    --bg: #0c0a09;
+    --surface: #1c1917;
+    --text: #d8d8d6;
+    --muted: #b8b4b1;
+    --border: #292524;
+    --accent-tec-usadas-letras: #60a5fa;
+    --accent-tec-usadas: #1e3a5f;
+    --accent-tec-dispo:  green;
+    --accent-tec-dispo-letras: white;
+
+    --nav: rgb(85, 85, 85);
+    --lineas-fond0:  #535353;
+    --surface-conoci: #474747;
     }
 }
 
@@ -249,9 +269,10 @@ header.nav {
 }
 
 
-@media (prefers-color-scheme: dark) { .btn.primary {
-                                             color: #0c0a09; 
-                                            } 
+.btn.primary { color: #fff; }
+:root[data-theme="dark"] .btn.primary { color: #0c0a09; }
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme]) .btn.primary { color: #0c0a09; }
 }
 
 section { 
@@ -439,6 +460,326 @@ footer {
     }
 }
 
+
+/* ============================================================
+   NUEVO: nav, switch de tema, switch Proyectos/Conocimientos,
+   hover de conocimientos y vista de proyecto en pantalla completa
+   ============================================================ */
+
+section { scroll-margin-top: 72px; } /* que el nav fijo no tape el título al hacer scroll */
+
+.sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    margin: -1px; padding: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* ---------- Nav + switch de tema (sol / luna) ---------- */
+.nav-derecha {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.theme-toggle {
+    position: relative;
+    flex-shrink: 0;
+    width: 60px;
+    height: 30px;
+    padding: 0;
+    border-radius: 999px;
+    border: 1px solid var(--lineas-fond0);
+    background: color-mix(in srgb, var(--nav) 15%, transparent);
+    cursor: pointer;
+}
+
+.theme-toggle svg {
+    position: absolute;
+    top: 7px;               /* (28px de alto interno - 14px del icono) / 2 */
+    z-index: 1;             /* por encima del círculo que se desliza */
+    color: var(--muted);
+    transition: color .3s ease;
+}
+
+.theme-toggle .icono-sol  { left: 7px; }
+.theme-toggle .icono-luna { right: 7px; }
+
+.theme-knob {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--accent-tec-usadas-letras);
+    transition: transform .35s cubic-bezier(.4, 0, .2, 1);
+}
+
+/* Claro: el círculo está sobre el sol. Oscuro: se desliza hasta la luna. */
+.theme-toggle[aria-checked="false"] .icono-sol,
+.theme-toggle[aria-checked="true"]  .icono-luna { color: var(--bg); }
+
+.theme-toggle[aria-checked="true"] .theme-knob { transform: translateX(30px); }
+
+/* ---------- Switch Proyectos / Conocimientos ---------- */
+.switch {
+    position: relative;
+    display: inline-grid;
+    grid-template-columns: 1fr 1fr;      /* dos opciones del mismo ancho */
+    padding: 4px;
+    margin-bottom: 28px;
+    border-radius: 999px;
+    border: 1px solid var(--lineas-fond0);
+    background: color-mix(in srgb, var(--nav) 10%, transparent);
+    backdrop-filter: blur(8px);
+}
+
+/* El selector que rodea a la opción activa */
+.switch-pill {
+    position: absolute;
+    top: 4px;
+    bottom: 4px;
+    left: 4px;
+    width: calc((100% - 8px) / 2);
+    border-radius: 999px;
+    background: var(--accent-tec-usadas-letras);
+    transition: transform .35s cubic-bezier(.4, 0, .2, 1);
+}
+
+.switch[data-active="conocimientos"] .switch-pill { transform: translateX(100%); }
+
+.switch-op {
+    position: relative;
+    z-index: 1;
+    padding: 8px 24px;
+    border: 0;
+    border-radius: 999px;
+    background: none;
+    color: var(--muted);
+    font: inherit;
+    font-size: .92rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: color .3s ease;
+}
+
+.switch-op:hover { color: var(--text); }
+.switch-op[aria-selected="true"],
+.switch-op[aria-selected="true"]:hover { color: var(--bg); }
+
+.panel.entra { animation: panel-entra .4s ease backwards; }
+
+@keyframes panel-entra {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: none; }
+}
+
+/* ---------- Conocimientos: crecen 1.3x al pasar el cursor (en claro y en oscuro) ---------- */
+.chip {
+    position: relative;
+    transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.chip:hover {
+    transform: scale(1.3);
+    z-index: 5;                          /* que quede por encima de los vecinos */
+    box-shadow: 0 10px 24px rgba(0, 0, 0, .28);
+}
+
+/* ---------- Tarjetas de proyecto ---------- */
+.card {
+    position: relative;
+    cursor: pointer;
+    transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent-tec-usadas-letras);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, .12);
+}
+
+.card .status { padding-right: 44px; }   /* lugar para el botón de expandir */
+
+.card-expandir {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--lineas-fond0);
+    border-radius: 8px;
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    transition: color .2s ease, border-color .2s ease;
+}
+
+.card:hover .card-expandir,
+.card-expandir:hover,
+.card-expandir:focus-visible {
+    color: var(--accent-tec-usadas-letras);
+    border-color: var(--accent-tec-usadas-letras);
+}
+
+/* ---------- Proyecto en pantalla completa (modal) ---------- */
+html.sin-scroll { overflow: hidden; }
+
+.proyecto-modal {
+    margin: auto;                         /* el reset global (* { margin: 0 }) rompería el centrado */
+    padding: 0;
+    width: min(880px, calc(100vw - 24px));
+    max-height: calc(100dvh - 32px);
+    overflow: hidden;
+    border: 1px solid var(--lineas-fond0);
+    border-radius: 16px;
+    background: var(--surface);
+    color: var(--text);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, .45);
+
+    opacity: 0;
+    transform: translateY(14px) scale(.95);
+    transition: opacity .25s ease, transform .25s ease;
+}
+
+.proyecto-modal[open] {
+    display: flex;
+    flex-direction: column;
+}
+
+.proyecto-modal.abierto {
+    opacity: 1;
+    transform: none;
+}
+
+.proyecto-modal::backdrop {
+    background: rgba(0, 0, 0, .6);
+    backdrop-filter: blur(6px);
+    opacity: 0;
+    transition: opacity .25s ease;
+}
+
+.proyecto-modal.abierto::backdrop { opacity: 1; }
+
+.modal-cerrar {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--lineas-fond0);
+    border-radius: 50%;
+    background: var(--surface);
+    color: var(--muted);
+    cursor: pointer;
+    transition: color .2s ease, border-color .2s ease;
+}
+
+.modal-cerrar:hover,
+.modal-cerrar:focus-visible {
+    color: var(--accent-tec-usadas-letras);
+    border-color: var(--accent-tec-usadas-letras);
+}
+
+.modal-cuerpo {
+    overflow-y: auto;
+    padding: 44px 40px 36px;
+}
+
+.modal-cuerpo .status {
+    padding-right: 44px;
+    margin-bottom: 10px;
+}
+
+.modal-cuerpo h3 {
+    font-size: clamp(1.4rem, 4vw, 1.9rem);
+    line-height: 1.2;
+    margin-bottom: 14px;
+}
+
+.modal-cuerpo p { color: var(--muted); }
+
+.modal-desc {
+    font-size: 1.05rem;
+    max-width: 66ch;
+}
+
+.modal-cuerpo h4 {
+    margin: 26px 0 10px;
+    font-size: .8rem;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+.modal-lista {
+    padding-left: 20px;
+    max-width: 66ch;
+    color: var(--muted);
+}
+
+.modal-lista li { margin-bottom: 8px; }
+
+.modal-cuerpo .stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.modal-cuerpo .stack span {
+    font-size: .8rem;
+    background: var(--accent-tec-usadas);
+    color: var(--accent-tec-usadas-letras);
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-weight: 600;
+}
+
+.modal-cuerpo .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 28px;
+    font-weight: 600;
+}
+
+@media (max-width: 560px) {
+    /* Celular: nombre y switch de tema arriba, links abajo (todo entra sin scroll horizontal) */
+    .nav .wrap {
+        height: auto;
+        flex-wrap: wrap;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        row-gap: 6px;
+    }
+    .nav-derecha { display: contents; }
+    .nav strong { order: 1; }
+    .theme-toggle { order: 2; }
+    .nav nav {
+        order: 3;
+        width: 100%;
+        justify-content: space-between;
+        gap: 8px;
+    }
+    section { scroll-margin-top: 104px; }
+
+    .modal-cuerpo { padding: 40px 20px 28px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .theme-knob, .switch-pill, .chip, .card, .proyecto-modal,
+    .proyecto-modal::backdrop { transition: none; }
+    .panel.entra { animation: none; }
+}
 
 /*falta 
 
