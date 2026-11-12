@@ -11,15 +11,15 @@ const PROYECTOS = [
     status: "Proyecto personal · En desarrollo",
     title: "Servidor casero y laboratorio Linux",
     description:
-      "Servidor propio en Linux donde aprendo Docker y Kubernetes para alojar sitios web, practico con máquinas virtuales (sistemas operativos, ciberseguridad y hosting) y desarrollo un sistema casero de almacenamiento en la nube similar a Drive.",
+      "Servidor propio en Linux donde aprendo Docker y Kubernetes para alojar sitios web. También practico con máquinas virtuales (sistemas operativos, ciberseguridad y hosting) y desarrollo un sistema casero de almacenamiento en la nube similar a Drive.",
     stack: ["Linux", "Docker", "Kubernetes", "Máquinas virtuales"],
   },
   {
     id: 2,
-    status: "En desarrollo",
+    status: "Proyecto personal · En desarrollo",
     title: "Aplicación web de noticias",
     description:
-      "Aplicación web para consultar noticias, con interfaz en React y un backend propio en Node.js y Express. [Sumá acá qué funcionalidades tiene: búsqueda, categorías, login, etc.]",
+      "Aplicación web para consultar noticias, con interfaz en React y un backend propio en Node.js y Express. Actualmente está en desarrollo y estoy investigando qué base de datos usar (MariaDB o Supabase).",
     stack: ["React", "Vite", "Node.js", "Express"],
     links: [
       { texto: "Ver demo", url: "#" },
@@ -33,13 +33,13 @@ const PROYECTOS = [
     description:
       "Aplicación web para gestionar el préstamo de notebooks, proyectores y cámaras. Los usuarios piden equipos por fechas y los encargados aprueban, rechazan o registran la devolución, con reglas que evitan reservas superpuestas.",
     features: [
-      "API REST en Node.js y Express con autenticación JWT",
+      "API REST en Node.js y Express con autenticación JWT.",
       "Control de disponibilidad: detecta fechas superpuestas y cambia el estado de los equipos.",
       "Historial de cambios, filtros, paginación y pruebas automatizadas con Jest.",
     ],
     miParte:
-      "organización y verificación de tests y lógica del negocio, integrar la verificación JWT con roles",
-    stack: ["React", "Vite", "Node.js", "Express", "JWT", "Jest"],
+      "organización y verificación de los tests y de la lógica del negocio, e integración de la verificación JWT con roles.",
+    stack: ["React", "Vite", "Node.js", "Express", "JWT", "Jest", "GitLab"],
     links: [{ texto: "Repositorio", url: "#" }],
   },
 ];

@@ -346,7 +346,7 @@ section h2 {
 }
 
 
-.chip .conc{
+.chip img {
     width: 64px;
     height: 64px;
     object-fit: contain;
@@ -772,7 +772,33 @@ html.sin-scroll { overflow: hidden; }
     }
     section { scroll-margin-top: 104px; }
 
+    /* Conocimientos en celular: 3 por fila y centrados (la última fila también queda centrada) */
+    .chips {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+    .chip {
+        width: calc((100% - 20px) / 3);
+        height: 112px;
+        padding: 8px;
+        gap: 8px;
+        font-size: .85rem;
+    }
+    .chip img {
+        width: 48px;
+        height: 48px;
+        object-fit: contain;
+        flex-shrink: 0;
+    }
+
     .modal-cuerpo { padding: 40px 20px 28px; }
+}
+
+/* Pantallas muy angostas (menos de 350px): 2 por fila para que el texto no se corte */
+@media (max-width: 349px) {
+    .chip { width: calc((100% - 10px) / 2); }
 }
 
 @media (prefers-reduced-motion: reduce) {
