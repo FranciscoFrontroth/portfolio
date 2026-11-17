@@ -11,7 +11,7 @@
     --accent-tec-dispo-letras: white;
 
     --nav: rgb(85, 85, 85);
-    --lineas-fond0:  #e2e8f0;
+    --lineas-fond0:  #b7bbc0;
     --surface-conoci: #e0e0e0;
     color-scheme: light;
 }
@@ -22,7 +22,7 @@
     color-scheme: dark;
     --bg: #0c0a09;
     --surface: #1c1917;
-    --text: #d8d8d6;
+    --text: #e6e6e6;
     --muted: #b8b4b1;
     --border: #292524;
     --accent-tec-usadas-letras: #60a5fa;
@@ -31,7 +31,7 @@
     --accent-tec-dispo-letras: white;
 
     --nav: rgb(85, 85, 85);
-    --lineas-fond0:  #535353;
+    --lineas-fond0:  #686868;
     --surface-conoci: #474747;
 }
 
@@ -42,7 +42,7 @@
         color-scheme: dark;
     --bg: #0c0a09;
     --surface: #1c1917;
-    --text: #d8d8d6;
+    --text: #e6e6e6;
     --muted: #b8b4b1;
     --border: #292524;
     --accent-tec-usadas-letras: #60a5fa;
@@ -51,7 +51,7 @@
     --accent-tec-dispo-letras: white;
 
     --nav: rgb(85, 85, 85);
-    --lineas-fond0:  #535353;
+    --lineas-fond0:  #585858;
     --surface-conoci: #474747;
     }
 }
