@@ -21,9 +21,7 @@ const PROYECTOS = [
     description:
       "Aplicación web para consultar noticias, con interfaz en React y un backend propio en Node.js y Express. Actualmente está en desarrollo y estoy investigando qué base de datos usar (MariaDB o Supabase).",
     stack: ["React", "Vite", "Node.js", "Express"],
-    links: [
-      { texto: "Ver demo", url: "#" },
-      { texto: "Repositorio", url: "#" },
+    links: [{ texto: "Repositorio", url: "https://github.com/FranciscoFrontroth/noticias-" },
     ],
   },
   {
@@ -40,7 +38,7 @@ const PROYECTOS = [
     miParte:
       "organización y verificación de los tests y de la lógica del negocio, e integración de la verificación JWT con roles.",
     stack: ["React", "Vite", "Node.js", "Express", "JWT", "Jest", "GitLab"],
-    links: [{ texto: "Repositorio", url: "#" }],
+    links: [{ texto: "Repositorio", url: "https://github.com/FranciscoFrontroth/DDS" }],
   },
 ];
 
